@@ -15,152 +15,94 @@
 
     <description>java-project-cloud公共核心包</description>
 
-    <properties>
-        <toprd-cloud.version>1.1.0</toprd-cloud.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
-        <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
-        <hutool.version>5.7.11</hutool.version>
-        <mybatis-plus.version>3.4.0</mybatis-plus.version>
-        <swagger.version>1.9.6</swagger.version>
-        <swagger.models.version>1.6.2</swagger.models.version>
-        <knife4j.version>2.0.5</knife4j.version>
-        <justauth.springboot.version>1.3.3</justauth.springboot.version>
-        <justauth.version>1.15.6</justauth.version>
-        <easy-captcha.version>1.6.2</easy-captcha.version>
-        <jjwt.version>0.9.1</jjwt.version>
-        <elastic.version>7.10.1</elastic.version>
-        <easy-poi.version>4.0.0</easy-poi.version>
-        <vividsolutions.version>1.13</vividsolutions.version>
-        <bedatadriven.version>2.4</bedatadriven.version>
-    </properties>
-
     <dependencies>
-        <!--Lombok-->
+        <!--web 模块-->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <!--mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <!--hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <!--server-api-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <!--hibernate-validator-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!--json模块-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+        <!--swagger knife4j -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+        </dependency>
+        <!--redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--mongodb -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!--easypoi-base-->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-base</artifactId>
+        </dependency>
+        <!-- vividsolutions -->
+        <dependency>
+            <groupId>com.bedatadriven</groupId>
+            <artifactId>jackson-datatype-jts</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vividsolutions</groupId>
+            <artifactId>jts</artifactId>
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <!-- SpringCloud 微服务 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- SpringCloud Alibaba 微服务 -->
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- SpringBoot 依赖配置 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- Swagger 依赖配置 -->
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-spring-boot-starter</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <!--hutool-->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <!--mybatis plus -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-            <!--justauth-->
-<!--            <dependency>-->
-<!--                <groupId>com.xkcoding.justauth</groupId>-->
-<!--                <artifactId>justauth-spring-boot-starter</artifactId>-->
-<!--                <version>${justauth.springboot.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>me.zhyd.oauth</groupId>-->
-<!--                <artifactId>JustAuth</artifactId>-->
-<!--                <version>${justauth.version}</version>-->
-<!--            </dependency>-->
-            <!-- captcha -->
-            <dependency>
-                <groupId>com.github.whvcse</groupId>
-                <artifactId>easy-captcha</artifactId>
-                <version>${easy-captcha.version}</version>
-            </dependency>
-            <!-- JWT -->
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
-            </dependency>
-            <!-- easypoi-->
-            <dependency>
-                <groupId>cn.afterturn</groupId>
-                <artifactId>easypoi-base</artifactId>
-                <version>${easy-poi.version}</version>
-            </dependency>
-            <!-- vividsolutions -->
-            <dependency>
-                <groupId>com.bedatadriven</groupId>
-                <artifactId>jackson-datatype-jts</artifactId>
-                <version>${bedatadriven.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.vividsolutions</groupId>
-                <artifactId>jts</artifactId>
-                <version>${vividsolutions.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <repositories>
-        <!--spring 镜像-->
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
-        </repository>
-        <!-- aliyun镜像 -->
-        <repository>
-            <id>aliyun</id>
-            <name>aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
 </project>
