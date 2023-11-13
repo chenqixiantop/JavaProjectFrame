@@ -1,0 +1,8 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.chenqixian.cloud.common.core.web.config.JacksonConfiguration,\
+  com.chenqixian.cloud.common.core.web.config.RestTemplateConfiguration,\
+  com.chenqixian.cloud.common.core.web.util.SpringContextHolder,\
+  com.chenqixian.cloud.common.core.web.config.MybatisPlusConfiguration,\
+  com.chenqixian.cloud.common.core.web.exception.GlobalExceptionHandler,\
+  com.chenqixian.cloud.common.core.web.handler.MateMetaObjectHandler,\
+  com.chenqixian.cloud.common.core.data.redis.config.RedisConfiguration
