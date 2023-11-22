@@ -19,6 +19,7 @@
 
     <modules>
         <module>cqx-cloud-common-core</module>
+        <module>cqx-examples</module>
     </modules>
 
     <properties>

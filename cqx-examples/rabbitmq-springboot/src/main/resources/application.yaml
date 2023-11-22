@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: 192.168.0.121
+    port: 5672
+    username: admin
+    password: 123456
+    publisher-confirm-type: correlated
