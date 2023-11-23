@@ -14,15 +14,15 @@ import java.util.Map;
 @Configuration
 public class TtlQueueConfig {
 
-    private static final String X_EXCHANGE = "X";
+    public static final String X_EXCHANGE = "X";
 
-    private static final String Y_DEAD_LETTER_EXCHANGE = "Y";
+    public static final String Y_DEAD_LETTER_EXCHANGE = "Y";
 
-    private static final String QUEUE_A =  "QA";
+    public static final String QUEUE_A =  "QA";
 
-    private static final String QUEUE_B = "QB";
+    public static final String QUEUE_B = "QB";
 
-    private static final String DEAD_LETTER_QUEUE = "QD";
+    public static final String DEAD_LETTER_QUEUE = "QD";
 
     @Bean("xExchange")
     public DirectExchange xExchange() {
@@ -60,11 +60,11 @@ public class TtlQueueConfig {
         return QueueBuilder.durable(QUEUE_B).withArguments(args).build();
     }
 
-    //声明队列 B 绑定 X 交换机
+    //声明队列 B 绑定 Y 交换机
     @Bean
     public Binding queueBindingY(@Qualifier("queueB") Queue queueB,
-                                 @Qualifier("yExchange") DirectExchange yExchange) {
-        return BindingBuilder.bind(queueB).to(yExchange).with("XB");
+                                 @Qualifier("xExchange") DirectExchange xExchange) {
+        return BindingBuilder.bind(queueB).to(xExchange).with("XB");
     }
 
     //声明死信队列 QD
@@ -75,7 +75,7 @@ public class TtlQueueConfig {
 
     //声明死信队列 QD 绑定关系
     @Bean
-    public Binding queueBindingD(@Qualifier("queueD") Queue queueD,
+    public Binding deadLetterBindQAD(@Qualifier("queueD") Queue queueD,
                                  @Qualifier("yExchange") DirectExchange yExchange) {
         return BindingBuilder.bind(queueD).to(yExchange).with("YD");
     }
