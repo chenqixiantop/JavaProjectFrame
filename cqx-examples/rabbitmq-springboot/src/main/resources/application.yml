@@ -1,0 +1,11 @@
+server:
+  port: 8801
+spring:
+  application:
+    name: cloud-stream-provider
+  rabbitmq:
+    host: 192.168.0.121
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirm-type: correlated
