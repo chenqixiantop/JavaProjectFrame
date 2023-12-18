@@ -11,5 +11,9 @@
 
     <artifactId>cqx-examples</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>rabbitmq-confirm</module>
+        <module>rabbitmq-springboot</module>
+    </modules>
 
 </project>
