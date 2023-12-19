@@ -14,6 +14,7 @@
     <modules>
         <module>rabbitmq-confirm</module>
         <module>rabbitmq-springboot</module>
+        <module>java-stream-demo</module>
     </modules>
 
 </project>
